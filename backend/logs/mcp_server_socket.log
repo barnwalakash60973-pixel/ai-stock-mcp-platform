@@ -1,5 +1,0 @@
-2026-04-15 10:26:58,667 - root - INFO - Logging initialized successfully.
-2026-04-15 10:26:58,684 - EnvironmentConfig - INFO - Environment variables loaded successfully
-2026-04-15 10:26:59,814 - httpx - INFO - HTTP Request: GET https://pypi.org/pypi/fastmcp/json "HTTP/1.1 200 OK"
-2026-04-15 10:27:00,106 - mcp.server.streamable_http_manager - INFO - StreamableHTTP session manager started
-2026-04-15 11:21:23,925 - mcp.server.streamable_http_manager - INFO - StreamableHTTP session manager shutting down
