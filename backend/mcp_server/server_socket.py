@@ -105,12 +105,11 @@ def execute_sqlserver_query(query: str)-> List[Dict[str,Any]]:
         "details": error_trace
     }]
 
-# --------------------------- Main Entry Point --------------------------- #
+
 if __name__ == "__main__":
     app.run(
         transport="http",
         host="0.0.0.0",
         port=8765,
-        stateless_http=True   
-    )      
-
+        stateless_http=True
+    )

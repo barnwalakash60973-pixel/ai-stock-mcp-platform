@@ -2,19 +2,21 @@
 __pycache__/
 *.pyc
 
-# Virtual env
+# Virtual Environment
+.venu/
 venv/
-backend/venu/
-.venv/
+env/
 
-# Environment
+# Environment Variables
 .env
 
 # Logs
 *.log
-
-# OS files
-.DS_Store
+logs/
 
 # VS Code
 .vscode/
+
+# OS Files
+.DS_Store
+Thumbs.db
