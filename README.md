@@ -112,7 +112,7 @@ Example tables available in the platform:
 
 The platform can automatically discover table structures, column names, data types, and nullable fields using the `get_schema()` method.
 
-![Database Schema](screenshots/get_schema_screenshot.png)
+![Database Schema](Screenshots/get_schema_screenshot.png)
 
 ---
 
@@ -174,7 +174,7 @@ python backend/main.py
 
 Server starts at:
 
-![Schema](screenshots/mcp_server_running.png)
+![Schema](Screenshots/mcp_server_running.png)
 
 ---
 
@@ -182,7 +182,7 @@ Server starts at:
 
 ### Check Specific Stock
 
-![Query Result](screenshots/query_execution_screenshot.png)
+![Query Result](Screenshots/query_execution_screenshot.png)
 
 ```sql
 SELECT *
