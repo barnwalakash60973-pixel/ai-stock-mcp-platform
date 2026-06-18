@@ -1,21 +1,85 @@
-# 🚀 AI Stock MCP Platform
+# 🚀 AI Stock MCP Platform | LangGraph + Gemini + FastMCP + SQL Server
 
 ## 📌 Overview
 
-AI Stock MCP Platform is a backend system built using **FastMCP** and **SQL Server** that enables AI agents and LLMs to access, analyze, and visualize stock market data through MCP (Model Context Protocol).
+AI Stock MCP Platform is an AI-powered financial analytics platform that enables natural language interaction with stock market databases using Large Language Models (LLMs), LangGraph workflows, and the Model Context Protocol (MCP).
 
-The platform provides database connectivity, schema discovery, SQL query execution, and is designed for future integration with:
+The platform combines Gemini, LangGraph, FastMCP, and SQL Server to automatically classify user intent, generate SQL queries, execute them securely against financial databases, and summarize results in natural language.
 
-* 🤖 Large Language Models (OpenAI, Claude, Gemini, etc.)
-* 📊 Plotly Interactive Dashboards
-* 📈 Matplotlib Visualizations
-* 📉 Seaborn Statistical Analysis
-* 🔍 Automated Stock Insights
-* 💹 Technical & Fundamental Analysis
+This project demonstrates how AI agents can interact with enterprise databases through MCP-based tool calling and schema-aware query generation.
 
 ---
 
-## 🏗️ Project Architecture
+## ✨ Key Features
+
+### 🤖 AI & Agent Features
+
+* Natural Language to SQL Generation
+* LangGraph Agent Workflow
+* Intent Classification
+* Schema-Aware Query Generation
+* AI-Powered Financial Question Answering
+* Result Summarization
+* MCP Tool Calling
+* LangSmith Tracing & Observability
+* Structured Agent Architecture
+
+### 🗄️ Database Features
+
+* SQL Server Integration
+* Automatic Schema Discovery
+* Secure Query Execution
+* Query Timeout Handling
+* DataFrame Conversion Support
+* Database Metadata Retrieval
+
+### 🔌 MCP Features
+
+* MCP Server Implementation
+* SQL Execution Tools
+* Schema Retrieval Tools
+* Financial Data Access via MCP
+* AI-Agent Database Connectivity
+
+---
+
+## 🏗️ System Architecture
+
+```text
+User Query
+     │
+     ▼
+LangGraph Workflow
+     │
+ ┌───────────────────────┐
+ │  Intent Classification │
+ └───────────────────────┘
+            │
+            ▼
+ ┌───────────────────────┐
+ │    SQL Generation     │
+ └───────────────────────┘
+            │
+            ▼
+ ┌───────────────────────┐
+ │ MCP Tool Execution    │
+ └───────────────────────┘
+            │
+            ▼
+      SQL Server
+            │
+            ▼
+ ┌───────────────────────┐
+ │ Result Summarization  │
+ └───────────────────────┘
+            │
+            ▼
+      Final Response
+```
+
+---
+
+## 📂 Project Structure
 
 ```text
 backend/
@@ -32,75 +96,63 @@ backend/
 │   └── server_socket.py
 │
 ├── main.py
-│
 ├── requirements.txt
 │
-|── Screenshots
-|
+├── Screenshots/
+│
 └── README.md
 ```
 
 ---
 
-## ⚙️ Features
+## ⚙️ LangGraph Workflow
 
-### Database Features
+The platform uses a multi-step AI workflow:
 
-* SQL Server Integration
-* Secure Environment Variable Management
-* Automatic Connection Handling
-* Query Timeout Support
-* DataFrame Conversion Support
-* Schema Discovery
+### 1️⃣ Intent Classification
 
-### MCP Features
+Determines whether a user query can be answered directly or requires database retrieval.
 
-* Execute Custom SQL Queries
-* Retrieve Database Schema
-* Fetch Table Metadata
-* Health Check Endpoint
-* MCP Tool Registration
+Examples:
 
-### Analytics Features (Planned)
+* "What is a stock?" → Direct Answer
+* "Show top stocks by volume" → Database Query
 
-* Data Profiling
-* Trend Analysis
-* Volume Analysis
-* Price Movement Analysis
-* Sector-wise Analysis
+### 2️⃣ SQL Generation
 
-### Visualization Features (Planned)
+Generates schema-aware SQL Server queries using Gemini.
 
-* Plotly Interactive Charts
-* Matplotlib Visualizations
-* Seaborn Statistical Plots
-* Candlestick Charts
-* Volume Charts
-* Correlation Heatmaps
+### 3️⃣ MCP Query Execution
 
-### AI Features (Planned)
+Executes validated SQL through FastMCP tools.
 
-* Natural Language to SQL
-* AI-Powered Stock Analysis
-* Automated Insights Generation
-* Financial Question Answering
-* Portfolio Analysis
-* Market Trend Explanation
+### 4️⃣ Result Summarization
+
+Converts database results into natural language responses.
 
 ---
 
-## 🗄️ Database Tables
+## 🗄️ Database Schema Discovery
 
-Example tables available in the platform:
+The platform automatically discovers:
+
+* Tables
+* Columns
+* Data Types
+* Nullable Fields
+
+using the MCP schema retrieval tool.
+
+### Example Tables
 
 * bhavcopy_asm
-* bhavcopy_delivery
+* bhavcopy_deliverable
 * bhavcopy_equity
 * bhavcopy_live
 * DailyAnalysis
-* intraday
+* intra_day
 * live_quote
-* PreDefineSymbol
+* PreDefineSymbols
 * Sectors
 * securities
 * StrongStart
@@ -108,198 +160,167 @@ Example tables available in the platform:
 * ZerodhaHistorical
 * ZerodhaTicks
 
-### Database Schema Discovery
-
-The platform can automatically discover table structures, column names, data types, and nullable fields using the `get_schema()` method.
-
-![Database Schema](Screenshots/get_schema_screenshot.png)
-
----
-
-## 🔧 Installation
-
-### 1. Clone Repository
-
-```bash
-git clone <repository-url>
-cd ai-stock-mcp-platform
-```
-
-### 2. Create Virtual Environment
-
-```bash
-python -m venv .venu
-```
-
-### 3. Activate Environment
-
-Windows:
-
-```bash
-.venu\Scripts\activate
-```
-
-Linux / Mac:
-
-```bash
-source .venu/bin/activate
-```
-
-### 4. Install Dependencies
-
-```bash
-pip install -r backend/requirements.txt
-```
-
----
-
-## 🔐 Environment Variables
-
-Create a `.env` file:
-
-```env
-DB_SERVER=YOUR_SERVER
-DB_DATABASE=YOUR_DATABASE
-DB_USER=YOUR_USERNAME
-DB_PASSWORD=YOUR_PASSWORD
-```
-
----
-
-## ▶️ Run MCP Server
-
-```bash
-python backend/main.py
-```
-
-Server starts at:
-
-![Schema](Screenshots/mcp_server_running.png)
-
----
-
-## 🧪 Example SQL Queries
-
-### Check Specific Stock
-
-![Query Result](Screenshots/query_execution_screenshot.png)
-
-```sql
-SELECT *
-FROM dbo.live_quote
-WHERE symbol = 'KPIL'
-```
-
-### Count Records
-
-```sql
-SELECT COUNT(*) AS total_rows
-FROM dbo.live_quote
-```
-
-### Top Volume Stocks
-
-```sql
-SELECT TOP 10
-    symbol,
-    volume
-FROM dbo.live_quote
-ORDER BY volume DESC
-```
-
-### Latest Live Quotes
-
-```sql
-SELECT TOP 20
-    symbol,
-    ltp,
-    volume,
-    trade_date
-FROM dbo.live_quote
-ORDER BY trade_date DESC
-```
-
 ---
 
 ## 🔌 MCP Tools
 
 ### execute_sqlserver_query()
 
-Execute SQL queries against SQL Server.
+Executes SQL queries securely against SQL Server.
 
 ### get_schema()
 
-Retrieve database schema information.
-
-### get_data_retrival()
-
-Retrieve table data as a pandas DataFrame.
+Retrieves database schema information.
 
 ### execute_query_to_dataframe()
 
-Execute custom SQL and return DataFrame output.
+Returns query results as Pandas DataFrames.
+
+### get_data_retrieval()
+
+Fetches table data for analysis and AI workflows.
 
 ---
 
-## 📊 Future Roadmap
+## 📊 Example Questions
 
-### Phase 1
+Users can ask questions in natural language:
 
-* SQL Server Integration ✅
-* FastMCP Integration ✅
-* Schema Discovery ✅
+* Show top 10 stocks by volume
+* What is the latest price of Reliance?
+* Which stocks have the highest delivery volume?
+* Show top gainers today
+* List the most active stocks
+* Explain what volume means in stock trading
 
-### Phase 2
+The system automatically determines whether to answer directly or query the database.
 
-* Plotly Visualizations
-* Matplotlib Support
-* Seaborn Analysis
+---
 
-### Phase 3
+## 📸 Screenshots
 
-* OpenAI Integration
-* Natural Language SQL Generation
-* Automated Insights
+## 📸 Application Screenshots
 
-### Phase 4
+### Dynamic Database Schema Discovery
 
-* Technical Indicators
-* Portfolio Analytics
-* Real-time Market Monitoring
+The MCP server automatically retrieves table metadata, column names, and schema information from SQL Server, enabling schema-aware query generation.
+
+![Schema Discovery](Screenshots/get_schema_screenshot.png)
+
+### Dynamic SQL Query Execution
+
+Natural language requests are converted into SQL queries and executed through MCP tools against the stock market database.
+
+![Query Execution](Screenshots/query_execution_screenshot.png)
+
+### 🤖 AI Assistant Response
+
+Example of the LangGraph + Gemini workflow processing a natural language stock market query, generating SQL, executing it through MCP, and returning a summarized response.
+
+![AI Assistant Response](Screenshots/result_llm.png)
+
+---
+
+## 📌 Repository Note
+
+This repository is provided for portfolio and educational purposes.
+
+The project relies on a private stock market database, proprietary financial datasets, and environment-specific configurations that are not included in this repository.
+
+For security, privacy, and licensing reasons, database credentials, API keys, and production data are excluded.
+
+The source code, architecture, workflows, and screenshots are shared to demonstrate the implementation of:
+
+* LangGraph-based AI workflows
+* Natural Language to SQL generation
+* MCP (Model Context Protocol) integration
+* SQL Server connectivity
+* AI-powered financial data analysis
+
+Screenshots and documentation reflect the system running against a private stock market dataset.
+
 
 ---
 
 ## 🛠️ Technology Stack
 
-### Backend
+### Programming
 
 * Python
-* FastMCP
+
+### Database
+
 * SQL Server
 * PyODBC
+
+### AI & Agent Frameworks
+
+* Gemini 2.5 Flash
+* LangGraph
+* LangChain
+* LangSmith
+* FastMCP
+* Model Context Protocol (MCP)
 
 ### Data Analysis
 
 * Pandas
 * NumPy
 
-### Visualization
+### Visualization (Planned)
 
 * Plotly
 * Matplotlib
 * Seaborn
 
-### AI/LLM
+---
 
-* OpenAI
-* Claude
-* Gemini
-* MCP Protocol
+## 🚀 Future Roadmap
+
+### Completed ✅
+
+* SQL Server Integration
+* FastMCP Integration
+* Schema Discovery
+* Natural Language to SQL
+* LangGraph Workflow
+* Gemini Integration
+* MCP Tool Calling
+* Result Summarization
+
+### Planned 🔄
+
+* Multi-Agent Financial Analysis
+* Portfolio Analytics
+* Technical Indicator Generation
+* Interactive Dashboards
+* Stock Recommendation Engine
+* Real-Time Market Monitoring
+
+---
+
+## 🎯 Learning Outcomes
+
+This project demonstrates:
+
+* AI Agent Development
+* LangGraph Workflow Design
+* MCP Server Development
+* LLM Tool Calling
+* Natural Language to SQL Systems
+* Database Integration for AI Applications
+* Financial Data Analytics
+* Production-Oriented Backend Architecture
 
 ---
 
 ## 👨‍💻 Author
 
-Akash Kumar
+**Akash Kumar Barnwal**
 
-AI | Machine Learning | Data Science | Stock Market Analytics
+AI Engineer | Data Scientist
+
+* GitHub
+* Kaggle
+* LinkedIn
+* LeetCode
