@@ -105,6 +105,14 @@ def execute_sqlserver_query(query: str)-> List[Dict[str,Any]]:
         "details": error_trace
     }]
 
+@app.tool()
+def get_schema():
+    adapter = get_sql_adapter()
+
+    if not adapter.connect():
+        return {"error": "Connection failed"}
+
+    return adapter.get_schema()
 
 if __name__ == "__main__":
     app.run(

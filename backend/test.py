@@ -21,6 +21,7 @@ for table_name, table_info in schema.items():
 
 
 #if you want query run first replce by this above code 
+
 """
 
 from data_loader.adapter.ssms_adapter import SqlServerAdapter
